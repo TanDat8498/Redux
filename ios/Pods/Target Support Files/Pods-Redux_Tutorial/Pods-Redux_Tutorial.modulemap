@@ -1,0 +1,6 @@
+module Pods_Redux_Tutorial {
+  umbrella header "Pods-Redux_Tutorial-umbrella.h"
+
+  export *
+  module * { export * }
+}
