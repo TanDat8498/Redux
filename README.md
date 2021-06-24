@@ -1,1 +1,2 @@
-# Demo
+# Shopping cart
+Redux - Redux-saga
