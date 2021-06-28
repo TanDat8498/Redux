@@ -21,8 +21,3 @@ export const fetchingDataError = error => {
     error: error,
   };
 };
-export const fetchingCategory = () => {
-  return {
-    type: types.FETCHING_CATEGORY,
-  };
-};

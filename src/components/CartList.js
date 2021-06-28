@@ -12,18 +12,18 @@ const CartList = props => {
       renderItem={({item}) => (
         <View style={styles.render}>
           <View style={styles.renderName}>
-            <Text style={styles.textProductName}>{item.product.name}</Text>
+            <Text style={styles.textProductName}>{item.name}</Text>
           </View>
           <View style={styles.count}>
             <TouchableOpacity
               style={styles.btnMinus}
-              onPress={() => props.handleDecrease(item.product.id)}>
+              onPress={() => props.handleDecrease(item.id)}>
               <Image source={MINUS} style={styles.imageMinus} />
             </TouchableOpacity>
             <Text style={styles.textProductName}>{item.quantity}</Text>
             <TouchableOpacity
               style={styles.btnPlus}
-              onPress={() => props.handleIncrease(item.product)}>
+              onPress={() => props.handleIncrease(item)}>
               <Image source={PLUS} style={styles.imagePlus} />
             </TouchableOpacity>
           </View>

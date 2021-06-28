@@ -2,28 +2,27 @@ import {StyleSheet, ImageBackground} from 'react-native';
 import React from 'react';
 import {BACKGROUND} from '../constants/';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-  addProductToCart,
-  removeProductToCart,
-} from '../store/actions/cartAction';
 import {CartBackButton} from '../components/CartBackButton';
 import CartList from '../components/CartList';
 import {CartText} from '../components/CartText';
 import {CartOrderButton} from '../components/CartOrderButton';
+import {cartActions} from '../store/reducers/cartReducer';
 
 const CartScreen = ({navigation}) => {
   const dispatch = useDispatch();
 
   const cart = useSelector(state => state.cart.cart);
+
   const totalPrice = useSelector(state => state.cart.totalPrice);
+
   const totalQuantity = useSelector(state => state.cart.totalQuantity);
 
   const handleIncrease = productId => {
-    dispatch(addProductToCart(productId, 1));
+    dispatch(cartActions.addProductToCart(productId, 1));
   };
 
   const handleDecrease = productId => {
-    dispatch(removeProductToCart(productId, 1));
+    dispatch(cartActions.removeProductToCart(productId, 1));
   };
 
   const handleGoBackCategory = () => {
@@ -35,7 +34,7 @@ const CartScreen = ({navigation}) => {
     navigation.goBack();
   };
   const handleRemove = cartItem => {
-    dispatch(removeProductToCart(cartItem.product.id, cartItem.quantity));
+    dispatch(cartActions.removeProductToCart(cartItem.id, cartItem.quantity));
   };
 
   return (

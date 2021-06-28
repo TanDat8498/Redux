@@ -1,21 +1,17 @@
 import {takeEvery, call, put} from 'redux-saga/effects';
-import {types} from '../store/type';
 import axios from 'axios';
-import {
-  fetchingDataError,
-  fetchingDataSuccess,
-} from '../store/actions/fetchingProductAction';
+import {productActions, productTypes} from '../store/reducers/productReducer';
 import {API_URL} from '../constants';
 
-function* fetchRequest() {
+function* fetchSagaRequest() {
   try {
     const res = yield call(() => axios.get(API_URL));
-    yield put(fetchingDataSuccess(res.data));
-  } catch (error) {
-    yield put(fetchingDataError(error));
+    yield put(productActions.fetchingDataSuccess(res.data));
+  } catch (er) {
+    yield put(productActions.fetchingDataError(er));
   }
 }
 
 export function* watchFetchDataSaga() {
-  yield takeEvery(types.FETCHING_DATA_REQUEST, fetchRequest);
+  yield takeEvery(productTypes.FETCHING_DATA_REQUEST, fetchSagaRequest);
 }

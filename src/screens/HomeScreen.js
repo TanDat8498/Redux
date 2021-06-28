@@ -1,19 +1,21 @@
 import {StyleSheet, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchingDataRequest} from '../store/actions/fetchingProductAction';
-import {addProductToCart} from '../store/actions/cartAction';
+import {cartActions} from '../store/reducers/cartReducer';
 import CustomButton from '../components/CustomButton';
 import CategoryList from '../components/CategoryList';
 import ProductList from '../components/ProductList';
+import {productActions} from '../store/reducers/productReducer';
 
 const HomeScreen = ({navigation}) => {
   const [selectedCate, setSelectedCate] = useState();
 
   const dispatch = useDispatch();
 
-  const products = useSelector(state => state.data.products);
+  const products = useSelector(state => state.products.products);
+
   const totalPrice = useSelector(state => state.cart.totalPrice);
+
   const totalQuantity = useSelector(state => state.cart.totalQuantity);
 
   const handleSelectedProduct = category => {
@@ -23,11 +25,10 @@ const HomeScreen = ({navigation}) => {
   };
 
   const handleAddCart = product => {
-    dispatch(addProductToCart(product, 1));
+    dispatch(cartActions.addProductToCart(product, 1));
   };
-
   useEffect(() => {
-    dispatch(fetchingDataRequest());
+    dispatch(productActions.fetchingDataRequest());
   }, []);
 
   useEffect(() => {
